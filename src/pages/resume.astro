@@ -1,0 +1,163 @@
+---
+import '../styles/global.css';
+import { PROFILE_INFO, TIMELINE_EXPERIENCE, FLAGSHIP_PROJECTS, CAPABILITIES } from '../data/projects';
+---
+
+<!doctype html>
+<html lang="en" class="bg-[#09090B] text-[#F4F4F5]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saivarshith Mitukula · Engineering Resume</title>
+    <meta name="description" content="Resume of Saivarshith Mitukula — EEE undergraduate at NITK Surathkal and ex-ISRO URSC research intern." />
+    <link rel="canonical" href="https://saivarshithm.dev/resume" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#09090B] text-[#F4F4F5] antialiased min-h-screen py-8 px-4 sm:px-6">
+    <!-- Top Action Bar (Hidden during Print) -->
+    <div class="no-print max-w-4xl mx-auto mb-6 flex items-center justify-between gap-4">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] text-xs font-mono text-zinc-300 hover:text-white border border-white/10 transition-colors tap-target"
+      >
+        <span>← Back to saivarshithm.dev</span>
+      </a>
+
+      <button
+        onclick="window.print()"
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-sm tap-target"
+      >
+        <span>Print / Save as PDF</span>
+      </button>
+    </div>
+
+    <!-- Resume Container (Card on web, clean paper on print) -->
+    <main class="print-page max-w-4xl mx-auto bg-[#111216] border border-white/10 rounded-2xl p-6 sm:p-10 shadow-2xl print:border-none print:shadow-none print:bg-white print:text-black">
+      {/* Header */}
+      <header class="border-b border-white/10 print:border-zinc-300 pb-5 mb-5">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white print:text-black tracking-tight font-sans">
+              Saivarshith Mitukula
+            </h1>
+            <p class="text-xs sm:text-sm font-mono text-emerald-400 print:text-emerald-700 font-semibold mt-0.5">
+              Electrical &amp; Electronics Engineering · NITK Surathkal &apos;27
+            </p>
+          </div>
+
+          <div class="text-xs font-mono text-zinc-400 print:text-zinc-600 space-y-0.5 sm:text-right">
+            <div><a href="https://saivarshithm.dev" class="hover:underline text-zinc-200 print:text-black font-semibold">saivarshithm.dev</a></div>
+            <div>GitHub: <a href="https://github.com/saivarshithm" class="hover:underline">@saivarshithm</a> · LinkedIn: <a href="https://linkedin.com/in/saivarshithmitukula" class="hover:underline">in/saivarshithmitukula</a></div>
+            <div>ORCID: <a href="https://orcid.org/0009-0007-7773-7587" class="hover:underline">0009-0007-7773-7587</a></div>
+          </div>
+        </div>
+      </header>
+
+      {/* Education */}
+      <section class="mb-5">
+        <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 print:text-emerald-700 mb-2 border-b border-white/5 print:border-zinc-200 pb-1">
+          Education
+        </h2>
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 text-sm font-sans">
+          <div>
+            <span class="font-bold text-white print:text-black">National Institute of Technology Karnataka (NITK), Surathkal</span>
+            <span class="text-xs text-zinc-400 print:text-zinc-600 block">Bachelor of Technology (B.Tech) in Electrical &amp; Electronics Engineering</span>
+          </div>
+          <div class="text-xs font-mono text-zinc-400 print:text-zinc-600 text-left sm:text-right">
+            <div>2023 – Present</div>
+            <div class="font-bold text-emerald-400 print:text-black">CGPA: 8.56 / 10.0</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Research Experience */}
+      <section class="mb-5">
+        <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 print:text-emerald-700 mb-2 border-b border-white/5 print:border-zinc-200 pb-1">
+          Research Experience
+        </h2>
+        <div>
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 text-sm font-sans">
+            <div>
+              <span class="font-bold text-white print:text-black">Summer Research Intern · Power Systems Group</span>
+              <span class="text-xs text-zinc-400 print:text-zinc-600 block">U.R. Rao Satellite Centre (URSC), ISRO · Bengaluru, India</span>
+            </div>
+            <div class="text-xs font-mono text-zinc-400 print:text-zinc-600">
+              May 2026 – Jun 2026
+            </div>
+          </div>
+          <ul class="mt-2 space-y-1 text-xs text-zinc-300 print:text-zinc-800 leading-relaxed list-disc list-inside">
+            <li>Designed a wide-input (11V–42V to 5V@4A, 20W) radiation-tolerant DC-DC buck converter for satellite power distribution.</li>
+            <li>Formulated and simulated closed-loop voltage-mode PWM controller with Type-III compensation in LTspice, maintaining phase margin &gt; 62°.</li>
+            <li>Synthesized LC output filter (600 µH / 50 µF) holding output voltage ripple below 20 mV under maximum transient step loads.</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Selected Engineering Projects */}
+      <section class="mb-5">
+        <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 print:text-emerald-700 mb-2 border-b border-white/5 print:border-zinc-200 pb-1">
+          Selected Engineering Projects
+        </h2>
+        <div class="space-y-3">
+          {FLAGSHIP_PROJECTS.slice(0, 4).map((proj) => (
+            <div>
+              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                <span class="text-xs font-bold text-white print:text-black">
+                  {proj.title}
+                </span>
+                <span class="text-[11px] font-mono text-zinc-400 print:text-zinc-600">
+                  {proj.metrics[0].label}: {proj.metrics[0].value}
+                </span>
+              </div>
+              <p class="text-[11px] sm:text-xs text-zinc-300 print:text-zinc-800 mt-0.5 leading-relaxed">
+                {proj.description}
+              </p>
+              <div class="text-[10px] font-mono text-zinc-400 print:text-zinc-600 mt-0.5">
+                Tools: {proj.toolsUsed.join(' · ')}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Technical Toolchains & Skills */}
+      <section class="mb-5">
+        <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 print:text-emerald-700 mb-2 border-b border-white/5 print:border-zinc-200 pb-1">
+          Technical Skills &amp; EDA Toolchains
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-zinc-300 print:text-zinc-800 font-sans">
+          <div>
+            <span class="font-bold text-white print:text-black font-mono">Silicon &amp; RTL: </span>
+            <span>Verilog-2001, RTL Design, RISC-V (RV32IM), ARM7TDMI, SKY130 PDK VLSI, Xilinx Vivado, GTKWave, ModelSim.</span>
+          </div>
+          <div>
+            <span class="font-bold text-white print:text-black font-mono">Power &amp; Control: </span>
+            <span>LTspice, NGSpice, MATLAB/Simulink, Ansys Maxwell 3D EM, Type-III Feedback, Closed-Loop PID Control.</span>
+          </div>
+          <div class="sm:col-span-2">
+            <span class="font-bold text-white print:text-black font-mono">Software &amp; Tools: </span>
+            <span>Astro, React, TypeScript, Tailwind CSS, Python Automation, Git, GitHub Actions, Linux.</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership & Honors */}
+      <section>
+        <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 print:text-emerald-700 mb-2 border-b border-white/5 print:border-zinc-200 pb-1">
+          Leadership &amp; Honors
+        </h2>
+        <ul class="text-xs text-zinc-300 print:text-zinc-800 space-y-1 list-disc list-inside">
+          <li><strong>Convener, Tronix &amp; Event Lead, EESA Day 2026:</strong> Directed technical workshops and hardware challenges for 400+ undergraduates at NITK Surathkal.</li>
+          <li><strong>HDLBits Global Rank ~1700:</strong> High-percentile performance in synthesizable digital Verilog circuits and state machine verification.</li>
+          <li><strong>Mechatronics Ball Balancer:</strong> Engineered closed-loop analog PID ball balancer with resistive touch panel and servo actuators.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

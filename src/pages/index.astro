@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { HeroBench } from '../components/HeroBench';
+import { BuckSimLab } from '../components/BuckSimLab';
 import { FlagshipBento } from '../components/FlagshipBento';
 import { GitHubExplorer } from '../components/GitHubExplorer';
 import { CapabilitiesMatrix } from '../components/CapabilitiesMatrix';
@@ -9,19 +10,22 @@ import { ExperienceTimeline } from '../components/ExperienceTimeline';
 
 <Layout>
   <div class="relative w-full">
-    <!-- 01. The Bench (Hero, Profile, Real-Time Oscilloscope / PWM Synthesizer) -->
+    <!-- 01. The Bench (Hero, Profile, Interactive Terminal Card) -->
     <HeroBench client:load />
 
-    <!-- 02. Flagship Hardware & Software (12-Col Bento Grid & Mode Switcher) -->
+    <!-- 02. Interactive PWM & Inductor Ripple Lab (~/saivarshithm/buck-sim) -->
+    <BuckSimLab client:visible />
+
+    <!-- 03. Flagship Hardware & Systems (Bento Grid + Mobile Sheet / Desktop Drawer) -->
     <FlagshipBento client:visible />
 
-    <!-- 03. Live GitHub Repository Engine (@saivarshithm Sync + Filters) -->
+    <!-- 04. Live GitHub Repository Explorer (Language Telemetry Bar + Real-Time Sync) -->
     <GitHubExplorer client:visible />
 
-    <!-- 04. Capabilities Matrix (Silicon & Power vs Vibe Coding & Apps) -->
+    <!-- 05. Capabilities Matrix (Silicon & Power vs Software & Tools) -->
     <CapabilitiesMatrix client:visible />
 
-    <!-- 05. Research & Institutional Experience Timeline (ISRO URSC, NITK) -->
+    <!-- 06. Research & Institutional Experience Timeline (ISRO URSC, NITK Surathkal) -->
     <ExperienceTimeline client:visible />
   </div>
 </Layout>

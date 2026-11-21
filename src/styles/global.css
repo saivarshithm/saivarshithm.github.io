@@ -1,125 +1,48 @@
 @import "tailwindcss";
 
-@theme {
-  --color-bench: #080A0D;
-  --color-bench-subtle: #0F131A;
-  --color-card: #10141B;
-  --color-card-hover: #161C26;
-  --color-card-border: rgba(255, 255, 255, 0.08);
-  --color-card-border-hover: rgba(255, 255, 255, 0.18);
-  --color-phosphor: #10B981;
-  --color-phosphor-glow: rgba(16, 185, 129, 0.25);
-  --color-cyan-logic: #38BDF8;
-  --color-cyan-glow: rgba(56, 189, 248, 0.25);
-  --color-copper: #F59E0B;
-  --color-copper-glow: rgba(245, 158, 11, 0.25);
-
-  --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-}
-
-:root {
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-}
-
-html {
-  scroll-behavior: auto; /* Handled smoothly by Lenis */
-  background-color: #080A0D;
-  color: #F3F4F6;
-  font-family: var(--font-body);
-  overflow-x: clip;
-  -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  min-height: 100dvh;
-  overflow-x: clip;
-  position: relative;
-  background-color: #080A0D;
-  /* Ambient deep obsidian lighting */
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.04) 0%, transparent 40%),
-    radial-gradient(circle at 15% 40%, rgba(245, 158, 11, 0.03) 0%, transparent 40%);
-}
-
-/* Glass-Carbon Card Surface with Dual Highlight */
-.card-glass {
-  background-color: #10141B;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 4px 20px -2px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.card-glass-hover {
-  transition: border-color 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@media (hover: hover) {
-  .card-glass-hover:hover {
-    border-color: rgba(255, 255, 255, 0.18);
-    transform: translateY(-2px);
-    box-shadow: 
-      inset 0 1px 0 rgba(255, 255, 255, 0.12),
-      0 12px 36px -4px rgba(0, 0, 0, 0.7);
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --color-bg-base: #09090B;
+    --color-surface: #111216;
+    --color-surface-elevated: #181920;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-hover: rgba(255, 255, 255, 0.16);
+    --color-primary: #F4F4F5;
+    --color-secondary: #A1A1AA;
+    --color-emerald: #10B981;
+    --color-cyan: #38BDF8;
+    --color-amber: #F59E0B;
   }
-}
 
-/* Magnetic Spotlight Card Surface */
-.spotlight-card {
-  position: relative;
-  overflow: hidden;
-}
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg-base);
+    color: var(--color-primary);
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
 
-.spotlight-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 255, 255, 0.08),
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 1;
-}
+  body {
+    background-color: var(--color-bg-base);
+    color: var(--color-primary);
+    min-height: 100dvh;
+    overflow-x: clip;
+    opacity: 1 !important; /* Guarantee immediate visibility on initial HTML paint */
+  }
 
-@media (hover: hover) {
-  .spotlight-card:hover::before {
+  /* All headings, paragraphs, and cards must be 100% visible on first render */
+  h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea, div, section {
     opacity: 1;
   }
-}
 
-/* Hardware Telemetry Badge */
-.telemetry-tag {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  padding: 0.2rem 0.55rem;
-  border-radius: 9999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Silicon Wafer / PCB Grid Pattern */
-.bg-grid-silicon {
-  background-size: 44px 44px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  code, pre, kbd, samp {
+    font-family: var(--font-mono);
+  }
 }
 
 /* Custom Scrollbar */
@@ -129,53 +52,78 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #080A0D;
+  background: #09090B;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1F2733;
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2E3A4C;
+  background: rgba(255, 255, 255, 0.22);
 }
 
-/* iOS Safe Input Sizing */
-input, textarea, select {
-  font-size: 16px !important;
+/* Utility to hide scrollbars for horizontal filter rows while allowing touch/wheel scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-/* Android & iOS Touch Targets >= 48px */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* High-Precision Developer Surfaces */
+.dev-card {
+  background-color: #111216;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dev-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: #14161c;
+}
+
+/* Minimum 44px tap target */
 .tap-target {
-  min-height: 48px;
-  min-width: 48px;
+  min-height: 44px;
+  min-width: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Haptic Press Scale Feedback for Touch */
-@media (hover: none) {
-  .tap-target:active {
-    transform: scale(0.97);
+/* Print Styles for Single-Page Clean Resume */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111827 !important;
+    font-size: 10pt !important;
+    line-height: 1.35 !important;
   }
-}
 
-/* Pulsing Status LED */
-@keyframes pulse-emerald {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.9;
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  header, nav, footer, .no-print, button, .tap-target, .mobile-dock {
+    display: none !important;
   }
-  50% {
-    transform: scale(1.08);
-    opacity: 1;
-    box-shadow: 0 0 14px 4px rgba(16, 185, 129, 0.45);
-  }
-}
 
-.animate-pulse-emerald {
-  animation: pulse-emerald 2s infinite ease-in-out;
+  .print-page {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  a {
+    color: #111827 !important;
+    text-decoration: underline !important;
+  }
+
+  @page {
+    margin: 0.5in;
+    size: letter portrait;
+  }
 }

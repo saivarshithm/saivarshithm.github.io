@@ -10,20 +10,20 @@ interface Props {
 }
 
 const {
-  title = "Saivarshith Mitukula · Digital Silicon & Power Systems | Vibe-Coded Apps",
-  description = "Saivarshith Mitukula — Electrical & Electronics Engineering undergraduate at NITK Surathkal, ex-ISRO URSC research intern. Specializing in RISC-V RTL, Space-Grade Power Electronics, SKY130 VLSI, and High-Velocity Software Platforms."
+  title = "Saivarshith Mitukula · Digital Silicon, Power Electronics & Software Systems",
+  description = "Saivarshith Mitukula — Electrical & Electronics Engineering undergraduate at NITK Surathkal, ex-ISRO URSC research intern. Specializing in RISC-V RTL, Space-Grade Power Electronics, SKY130 VLSI, and Fast Developer Tools."
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="dark scroll-smooth bg-[#080A0D]">
+<html lang="en" class="dark scroll-smooth bg-[#09090B]">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="author" content="Saivarshith Mitukula" />
-    <meta name="theme-color" content="#080A0D" />
+    <meta name="theme-color" content="#09090B" />
     <meta name="color-scheme" content="dark" />
     <link rel="canonical" href="https://saivarshithm.dev" />
 
@@ -32,7 +32,9 @@ const {
     <meta property="og:url" content="https://saivarshithm.dev" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://saivarshithm.dev/saivarshith.jpg" />
+    <meta property="og:image" content="https://saivarshithm.dev/og-card.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -40,24 +42,24 @@ const {
     <meta name="twitter:creator" content="@Saivarshithm" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://saivarshithm.dev/saivarshith.jpg" />
+    <meta name="twitter:image" content="https://saivarshithm.dev/og-card.svg" />
 
     <!-- Favicon & Web Manifest -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
 
-    <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
+    <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
     <title>{title}</title>
   </head>
-  <body class="bg-[#080A0D] text-slate-100 antialiased selection:bg-emerald-500/30 selection:text-emerald-200 min-h-[100dvh] flex flex-col font-sans overflow-x-hidden">
-    <!-- Floating Obsidian Capsule Header -->
+  <body class="bg-[#09090B] text-[#F4F4F5] antialiased selection:bg-emerald-500/20 selection:text-emerald-300 min-h-[100dvh] flex flex-col font-sans overflow-x-clip">
+    <!-- Sticky Glass Developer Header -->
     <Header client:load />
 
     <!-- Main Content Stage -->
@@ -70,28 +72,5 @@ const {
 
     <!-- Mobile Floating Glass Dock (< 768px) -->
     <MobileDock client:load />
-
-    <!-- Lenis Smooth Scroll Script -->
-    <script>
-      import Lenis from 'lenis';
-
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!prefersReducedMotion) {
-        const lenis = new Lenis({
-          duration: 1.1,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          lerp: 0.09,
-          smoothWheel: true,
-          touchMultiplier: 1.5,
-        });
-
-        function raf(time: number) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-      }
-    </script>
   </body>
 </html>

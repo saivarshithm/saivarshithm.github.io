@@ -51,11 +51,13 @@ export const CommandPalette: React.FC = () => {
   };
 
   const filteredItems = [
-    { id: 'nav-bench', type: 'Nav', title: 'The Bench (Hero & Oscilloscope)', action: () => handleNavigate('#bench'), icon: Cpu },
-    { id: 'nav-flagships', type: 'Nav', title: 'Flagship Systems & Case Studies', action: () => handleNavigate('#flagships'), icon: Layers },
+    { id: 'nav-bench', type: 'Nav', title: 'The Bench (Hero & Code Terminal)', action: () => handleNavigate('#bench'), icon: Cpu },
+    { id: 'nav-buck', type: 'Nav', title: 'PWM & Buck Converter Lab (~/saivarshithm/buck-sim)', action: () => handleNavigate('#buck-lab'), icon: Cpu },
+    { id: 'nav-flagships', type: 'Nav', title: 'Flagship Systems & Architecture', action: () => handleNavigate('#flagships'), icon: Layers },
     { id: 'nav-repos', type: 'Nav', title: 'Live GitHub Repository Explorer', action: () => handleNavigate('#repositories'), icon: Terminal },
     { id: 'nav-stack', type: 'Nav', title: 'Capabilities & Toolchains Matrix', action: () => handleNavigate('#capabilities'), icon: Layers },
     { id: 'nav-exp', type: 'Nav', title: 'Milestones & ISRO Timeline', action: () => handleNavigate('#experience'), icon: Briefcase },
+    { id: 'nav-resume', type: 'Nav', title: 'View Printable Engineering Resume (/resume)', action: () => { window.location.href = '/resume'; }, icon: ExternalLink },
     { id: 'nav-connect', type: 'Nav', title: 'Connect & Academic IDs', action: () => handleNavigate('#connect'), icon: ExternalLink },
 
     {
