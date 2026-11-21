@@ -42,7 +42,7 @@ export const MobileDock: React.FC = () => {
       }}
       aria-label="Mobile Navigation Dock"
     >
-      <div className="rounded-full px-2 py-2 flex items-center justify-around border border-[#EBDFCD] shadow-[0_12px_32px_rgba(74,48,26,0.18)] backdrop-blur-xl bg-[#FBF8F2]/90">
+      <div className="rounded-full px-2 py-2 flex items-center justify-around border border-white/10 shadow-[0_12px_32px_rgba(0,0,0,0.8)] backdrop-blur-xl bg-[#10141B]/90">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeSection === item.id;
@@ -53,8 +53,8 @@ export const MobileDock: React.FC = () => {
               href={item.href}
               className={`tap-target flex flex-col items-center justify-center gap-1 rounded-full transition-all duration-150 active:scale-95 min-w-[54px] min-h-[48px] ${
                 isActive
-                  ? 'text-white bg-[#171615] font-bold shadow-sm'
-                  : 'text-[#5C3826] hover:text-[#2E241E]'
+                  ? 'text-emerald-300 bg-emerald-500/20 font-bold border border-emerald-500/30 shadow-[0_0_12px_rgba(16,185,129,0.3)]'
+                  : 'text-zinc-400 hover:text-white'
               }`}
             >
               <Icon className="w-4 h-4" />

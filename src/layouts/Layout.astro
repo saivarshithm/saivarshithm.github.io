@@ -16,45 +16,48 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth bg-[#F5EFE6]">
+<html lang="en" class="dark scroll-smooth bg-[#080A0D]">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="author" content="Saivarshith Mitukula" />
-    <meta name="theme-color" content="#F5EFE6" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#080A0D" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href="https://saivarshithm.dev" />
 
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://saivarshithm.github.io" />
+    <meta property="og:url" content="https://saivarshithm.dev" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://saivarshithm.github.io/saivarshith.jpg" />
+    <meta property="og:image" content="https://saivarshithm.dev/saivarshith.jpg" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Saivarshithm" />
     <meta name="twitter:creator" content="@Saivarshithm" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://saivarshithm.github.io/saivarshith.jpg" />
+    <meta name="twitter:image" content="https://saivarshithm.dev/saivarshith.jpg" />
 
-    <!-- Circuit Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%232E241E'/><circle cx='50' cy='50' r='24' stroke='%238C5E14' stroke-width='6' fill='none'/><circle cx='50' cy='50' r='8' fill='%2310B981'/></svg>" />
+    <!-- Favicon & Web Manifest -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
 
-    <!-- Google Fonts: Cherry Bomb One, Caveat, Inter, JetBrains Mono -->
+    <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cherry+Bomb+One&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
     <title>{title}</title>
   </head>
-  <body class="bg-[#F5EFE6] text-[#2E241E] antialiased selection:bg-[#FDE68A] selection:text-[#78350F] min-h-[100dvh] flex flex-col font-sans">
-    <!-- EdgeDrop Floating Capsule Header -->
+  <body class="bg-[#080A0D] text-slate-100 antialiased selection:bg-emerald-500/30 selection:text-emerald-200 min-h-[100dvh] flex flex-col font-sans overflow-x-hidden">
+    <!-- Floating Obsidian Capsule Header -->
     <Header client:load />
 
     <!-- Main Content Stage -->
@@ -62,10 +65,33 @@ const {
       <slot />
     </main>
 
-    <!-- EdgeDrop Dark Bedrock Footer -->
+    <!-- Dark Bedrock Terminal Footer -->
     <Footer client:visible />
 
     <!-- Mobile Floating Glass Dock (< 768px) -->
     <MobileDock client:load />
+
+    <!-- Lenis Smooth Scroll Script -->
+    <script>
+      import Lenis from 'lenis';
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReducedMotion) {
+        const lenis = new Lenis({
+          duration: 1.1,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          lerp: 0.09,
+          smoothWheel: true,
+          touchMultiplier: 1.5,
+        });
+
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+      }
+    </script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Activity, Sliders, Sparkles, Search, BookOpen, ExternalLink } from 'lucide-react';
+import { Activity, Sliders, Sparkles, Search, BookOpen, ExternalLink, Zap } from 'lucide-react';
 
 export const BenchInteractiveWidget: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'scope' | 'app'>('scope');
@@ -45,14 +45,14 @@ export const BenchInteractiveWidget: React.FC = () => {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Dark CRT screen inside warm instrument bezel
-      ctx.fillStyle = '#090D12';
+      // Dark CRT Screen
+      ctx.fillStyle = '#080C10';
       ctx.fillRect(0, 0, width, height);
 
       // Oscilloscope Graticule
       const divX = width / 10;
       const divY = height / 8;
-      ctx.strokeStyle = 'rgba(16, 185, 129, 0.09)';
+      ctx.strokeStyle = 'rgba(16, 185, 129, 0.08)';
       ctx.lineWidth = 1;
 
       ctx.beginPath();
@@ -66,7 +66,7 @@ export const BenchInteractiveWidget: React.FC = () => {
       }
       ctx.stroke();
 
-      // Center crosshair graticule sub-ticks
+      // Center crosshair graticule
       ctx.strokeStyle = 'rgba(16, 185, 129, 0.2)';
       const midX = width / 2;
       const midY = height / 2;
@@ -114,7 +114,7 @@ export const BenchInteractiveWidget: React.FC = () => {
       }
       ctx.stroke();
 
-      // Ghost analog persistence trace
+      // Persistence glow trace
       ctx.beginPath();
       ctx.strokeStyle = 'rgba(16, 185, 129, 0.25)';
       ctx.lineWidth = 4;
@@ -154,77 +154,79 @@ export const BenchInteractiveWidget: React.FC = () => {
   const vOut = (vIn * (dutyCycle / 100)).toFixed(2);
 
   return (
-    <div className="w-full paper-sheet rounded-[28px] overflow-hidden border border-[#EBDFCD] bg-[#FBF8F2] shadow-[0_20px_50px_-20px_rgba(74,48,26,0.18)]">
+    <div className="w-full card-glass rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
       {/* Instrumentation Header Bar */}
-      <div className="bg-[#FAF6F0] px-4 sm:px-6 py-3.5 border-b border-[#EBDFCD] flex flex-wrap items-center justify-between gap-3">
-        {/* Dual Tab Mode Switcher Pill */}
-        <div className="inline-flex p-1 rounded-full bg-[#EFE8DC] border border-[#EBDFCD]">
-          <button
-            onClick={() => setActiveTab('scope')}
-            className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide flex items-center gap-2 transition-all ${
-              activeTab === 'scope'
-                ? 'bg-[#171615] text-white shadow-sm'
-                : 'text-[#5C3826] hover:text-[#2E241E]'
-            }`}
-          >
-            <Activity className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Oscilloscope (100 kHz)</span>
-          </button>
-          <button
-            onClick={() => setActiveTab('app')}
-            className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide flex items-center gap-2 transition-all ${
-              activeTab === 'app'
-                ? 'bg-[#171615] text-white shadow-sm'
-                : 'text-[#5C3826] hover:text-[#2E241E]'
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5 text-sky-400" />
-            <span>FileVault Platform</span>
-          </button>
+      <div className="bg-[#0C1017] px-4 py-3 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          {/* Dual Tab Mode Switcher */}
+          <div className="inline-flex p-1 rounded-xl bg-black/50 border border-white/10">
+            <button
+              onClick={() => setActiveTab('scope')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-2 transition-all ${
+                activeTab === 'scope'
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-sm'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <Activity className="w-3.5 h-3.5 text-emerald-400" />
+              <span>LIVE OSCILLOSCOPE (100 kHz)</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('app')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-2 transition-all ${
+                activeTab === 'app'
+                  ? 'bg-sky-500/20 text-sky-400 border border-sky-500/30 shadow-sm'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-sky-400" />
+              <span>FILEVAULT APP PREVIEW</span>
+            </button>
+          </div>
         </div>
 
-        {/* Bench Clock Tag */}
-        <div className="flex items-center gap-2 text-xs font-mono text-[#5C3826]">
+        {/* Live Bench Status Tag */}
+        <div className="flex items-center gap-2 text-xs font-mono text-gray-400">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span className="hidden sm:inline">BENCH CLOCK:</span>
-          <span className="text-[#2E241E] font-bold">{frequency} kHz</span>
+          <span className="text-emerald-400 font-bold">{frequency} kHz</span>
         </div>
       </div>
 
       {/* Main Interactive Body */}
       {activeTab === 'scope' ? (
-        <div className="p-4 sm:p-6 lg:p-7 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           {/* CRT Screen */}
-          <div className="lg:col-span-8 flex flex-col gap-3">
-            <div className="relative rounded-2xl overflow-hidden border-2 border-[#1E232A] bg-black h-56 sm:h-64 shadow-[inset_0_0_40px_rgba(16,185,129,0.18)]">
+          <div className="lg:col-span-8 flex flex-col gap-2">
+            <div className="relative rounded-xl overflow-hidden border border-emerald-500/25 bg-black h-56 sm:h-64 shadow-[inset_0_0_35px_rgba(16,185,129,0.15)]">
               <canvas ref={canvasRef} className="w-full h-full block" />
               
               {/* OSD Telemetry */}
-              <div className="absolute top-3 left-3.5 font-mono text-[10px] sm:text-xs text-emerald-400/90 flex gap-4 pointer-events-none">
+              <div className="absolute top-2.5 left-3 font-mono text-[10px] sm:text-xs text-emerald-400/90 flex gap-4 pointer-events-none">
                 <span>CH1: 2.0V/DIV</span>
                 <span>TIME: 2.0µs/DIV</span>
-                <span>TRIG: AUTO</span>
+                <span>TRIG: AUTO [50%]</span>
               </div>
-              <div className="absolute bottom-3 right-3.5 font-mono text-[10px] sm:text-xs text-emerald-400/90 pointer-events-none">
+              <div className="absolute bottom-2.5 right-3 font-mono text-[10px] sm:text-xs text-emerald-400/90 pointer-events-none">
                 <span>Vpp: 5.00V · Vavg: {vOut}V</span>
               </div>
             </div>
 
-            {/* Waveform Selector */}
-            <div className="flex items-center justify-between text-xs pt-1 px-1">
-              <div className="flex items-center gap-1.5 font-semibold text-[#5C3826]">
-                <Sliders className="w-3.5 h-3.5 text-[#8C5E14]" />
-                <span>Waveform Type:</span>
+            {/* Quick Waveform Mode Selectors */}
+            <div className="flex items-center justify-between text-xs pt-1">
+              <div className="flex items-center gap-1.5 font-mono text-gray-400">
+                <Sliders className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="text-[11px]">WAVEFORM:</span>
               </div>
-              <div className="flex gap-1.5">
+              <div className="flex gap-1.5 font-mono text-xs">
                 {(['pwm', 'sine', 'ripple'] as const).map((type) => (
                   <button
                     key={type}
                     onClick={() => setWaveType(type)}
-                    className={`px-3 py-1 rounded-full text-xs font-mono font-medium transition-all ${
+                    className={`px-2.5 py-1 rounded-md text-[11px] font-medium transition-all ${
                       waveType === type
-                        ? 'bg-[#171615] text-white'
-                        : 'bg-[#EFE8DC] text-[#5C3826] hover:bg-[#EBDFCD]'
+                        ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-500/40'
+                        : 'bg-white/5 text-gray-400 hover:text-white border border-transparent'
                     }`}
                   >
                     {type.toUpperCase()}
@@ -234,18 +236,18 @@ export const BenchInteractiveWidget: React.FC = () => {
             </div>
           </div>
 
-          {/* Controls & Filter Specs */}
-          <div className="lg:col-span-4 flex flex-col gap-4 bg-[#FAF6F0] p-5 rounded-2xl border border-[#EBDFCD]">
-            <div className="text-xs font-mono text-[#8C5E14] uppercase tracking-wider font-bold flex items-center justify-between">
+          {/* Controls & Filter Telemetry */}
+          <div className="lg:col-span-4 flex flex-col gap-4 bg-white/[0.02] p-4 rounded-xl border border-white/5">
+            <div className="text-xs font-mono text-gray-400 uppercase tracking-wider flex items-center justify-between">
               <span>PWM SYNTHESIZER</span>
-              <span className="text-[#2E241E] font-bold">{dutyCycle}% DUTY</span>
+              <span className="text-emerald-400 font-semibold">{dutyCycle}% DUTY</span>
             </div>
 
             {/* Duty Cycle Slider */}
-            <div className="space-y-1.5">
-              <div className="flex justify-between text-xs font-mono text-[#5C3826]">
+            <div className="space-y-1">
+              <div className="flex justify-between text-xs font-mono text-gray-400">
                 <span>Duty Cycle</span>
-                <span className="text-[#2E241E] font-bold">{dutyCycle}%</span>
+                <span className="text-white font-bold">{dutyCycle}%</span>
               </div>
               <input
                 type="range"
@@ -253,15 +255,15 @@ export const BenchInteractiveWidget: React.FC = () => {
                 max="90"
                 value={dutyCycle}
                 onChange={(e) => setDutyCycle(Number(e.target.value))}
-                className="w-full accent-[#2E241E] cursor-pointer h-2 bg-[#EBDFCD] rounded-lg"
+                className="w-full accent-emerald-500 cursor-pointer h-1.5 bg-white/10 rounded-lg"
               />
             </div>
 
             {/* Frequency Slider */}
-            <div className="space-y-1.5">
-              <div className="flex justify-between text-xs font-mono text-[#5C3826]">
-                <span>Switching Frequency</span>
-                <span className="text-[#2E241E] font-bold">{frequency} kHz</span>
+            <div className="space-y-1">
+              <div className="flex justify-between text-xs font-mono text-gray-400">
+                <span>Switching Freq</span>
+                <span className="text-white font-bold">{frequency} kHz</span>
               </div>
               <input
                 type="range"
@@ -270,43 +272,43 @@ export const BenchInteractiveWidget: React.FC = () => {
                 step="10"
                 value={frequency}
                 onChange={(e) => setFrequency(Number(e.target.value))}
-                className="w-full accent-[#2E241E] cursor-pointer h-2 bg-[#EBDFCD] rounded-lg"
+                className="w-full accent-emerald-500 cursor-pointer h-1.5 bg-white/10 rounded-lg"
               />
             </div>
 
-            {/* Spec Box */}
-            <div className="pt-3 border-t border-[#EBDFCD] space-y-2 font-mono text-xs">
-              <div className="flex justify-between text-[#5C3826]">
+            {/* Calculated LC Filter Metrics */}
+            <div className="pt-2 border-t border-white/10 space-y-2 font-mono text-xs">
+              <div className="flex justify-between text-gray-400">
                 <span>Input Voltage (Vin):</span>
-                <span className="text-[#2E241E] font-bold">24.0 V</span>
+                <span className="text-gray-200">24.0 V</span>
               </div>
-              <div className="flex justify-between text-[#5C3826]">
-                <span>Regulated Vout:</span>
-                <span className="text-emerald-700 font-bold">{vOut} V</span>
+              <div className="flex justify-between text-gray-400">
+                <span>Output Regulated (Vout):</span>
+                <span className="text-emerald-400 font-bold">{vOut} V</span>
               </div>
-              <div className="flex justify-between text-[#5C3826]">
+              <div className="flex justify-between text-gray-400">
                 <span>LC Resonant Pole:</span>
-                <span className="text-sky-700 font-bold">142.3 kHz</span>
+                <span className="text-sky-400">142.3 kHz</span>
               </div>
-              <div className="flex justify-between text-[#5C3826]">
-                <span>Estimated Ripple:</span>
-                <span className="text-[#8C5E14] font-bold">&lt; 18.5 mV</span>
+              <div className="flex justify-between text-gray-400">
+                <span>Estimated Ripple (ΔV):</span>
+                <span className="text-amber-400">&lt; 18.5 mV</span>
               </div>
             </div>
           </div>
         </div>
       ) : (
         /* FileVault App Interactive Mock */
-        <div className="p-4 sm:p-6 lg:p-7 flex flex-col gap-4">
+        <div className="p-4 sm:p-6 flex flex-col gap-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-base font-bold text-[#2E241E]">FileVault NITK</span>
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-sky-100 text-sky-800 border border-sky-200">
+                <span className="text-sm font-semibold text-white font-display">FileVault NITK</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-sky-500/20 text-sky-400 border border-sky-500/30">
                   Production · filevault.cc
                 </span>
               </div>
-              <p className="text-xs text-[#5C3826] mt-0.5">
+              <p className="text-xs text-gray-400 mt-0.5">
                 Centralized academic resource repository for NITK Surathkal with sub-millisecond query speed.
               </p>
             </div>
@@ -315,23 +317,23 @@ export const BenchInteractiveWidget: React.FC = () => {
               href="https://filevault.cc"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#2E241E] bg-[#FAF6F0] hover:bg-white border border-[#EBDFCD] transition-all w-fit shadow-sm"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono text-sky-400 bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 transition-all w-fit"
             >
               <span>Visit filevault.cc</span>
-              <ExternalLink className="w-3.5 h-3.5 text-[#8C5E14]" />
+              <ExternalLink className="w-3 h-3" />
             </a>
           </div>
 
           {/* Search & Dept Filters */}
-          <div className="flex flex-col sm:flex-row gap-2.5">
+          <div className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
-              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8C5E14]" />
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search courses, notes, or topics (e.g. RISC-V, SPICE, Power)..."
                 value={courseQuery}
                 onChange={(e) => setCourseQuery(e.target.value)}
-                className="w-full pl-10 pr-3 py-2.5 bg-white border border-[#EBDFCD] rounded-2xl text-xs text-[#2E241E] placeholder-[#5C3826]/60 focus:outline-none focus:border-[#8C5E14] transition-all font-mono shadow-sm"
+                className="w-full pl-9 pr-3 py-2 bg-black/40 border border-white/10 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-sky-500 transition-all font-mono"
               />
             </div>
             <div className="flex gap-1.5 overflow-x-auto pb-1 sm:pb-0">
@@ -339,10 +341,10 @@ export const BenchInteractiveWidget: React.FC = () => {
                 <button
                   key={dept}
                   onClick={() => setSelectedDept(dept)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                  className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
                     selectedDept === dept
-                      ? 'bg-[#171615] text-white shadow-sm'
-                      : 'bg-[#FAF6F0] text-[#5C3826] hover:bg-white border border-[#EBDFCD]'
+                      ? 'bg-sky-500 text-black font-semibold'
+                      : 'bg-white/5 text-gray-400 hover:text-white border border-white/5'
                   }`}
                 >
                   {dept}
@@ -352,34 +354,34 @@ export const BenchInteractiveWidget: React.FC = () => {
           </div>
 
           {/* Course Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-h-56 overflow-y-auto pr-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 max-h-56 overflow-y-auto pr-1">
             {filteredCourses.length > 0 ? (
               filteredCourses.map((c) => (
                 <div
                   key={c.code}
-                  className="p-3.5 rounded-2xl bg-white border border-[#EBDFCD] hover:border-[#8C5E14]/40 transition-all flex flex-col justify-between shadow-sm"
+                  className="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-sky-500/40 transition-all flex flex-col justify-between group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-mono text-xs font-bold text-[#8C5E14]">{c.code}</span>
-                      <span className="text-[10px] font-mono text-[#5C3826] bg-[#FAF6F0] px-2 py-0.5 rounded-md border border-[#EBDFCD]">
+                      <span className="font-mono text-xs font-bold text-sky-400">{c.code}</span>
+                      <span className="text-[10px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded-md">
                         {c.dept}
                       </span>
                     </div>
-                    <div className="text-xs text-[#2E241E] font-semibold line-clamp-1">{c.title}</div>
+                    <div className="text-xs text-gray-200 font-medium line-clamp-1">{c.title}</div>
                   </div>
-                  <div className="mt-2.5 pt-2 border-t border-[#EBDFCD]/60 flex items-center justify-between text-[11px] font-mono text-[#5C3826]">
-                    <span className="text-emerald-700">{c.badge}</span>
-                    <span className="flex items-center gap-1 font-semibold text-[#2E241E]">
-                      <BookOpen className="w-3 h-3 text-[#8C5E14]" />
+                  <div className="mt-2.5 pt-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-gray-400">
+                    <span className="text-emerald-400/90">{c.badge}</span>
+                    <span className="group-hover:text-white flex items-center gap-1">
+                      <BookOpen className="w-3 h-3 text-sky-400" />
                       {c.notes}
                     </span>
                   </div>
                 </div>
               ))
             ) : (
-              <div className="col-span-full py-8 text-center text-xs font-mono text-[#5C3826]">
-                No matching courses found.
+              <div className="col-span-full py-6 text-center text-xs font-mono text-gray-500">
+                No matching courses found. Try searching &quot;Verilog&quot;, &quot;Power&quot;, or &quot;DSP&quot;.
               </div>
             )}
           </div>
