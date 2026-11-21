@@ -4,14 +4,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "node -e \"process.argv=['node','astro','dev']; process.env.ASTRO_TELEMETRY_DISABLED='1'; import('./node_modules/astro/astro.js')\"",
-    "build": "node -e \"process.argv=['node','astro','build']; process.env.ASTRO_TELEMETRY_DISABLED='1'; import('./node_modules/astro/astro.js')\"",
-    "preview": "node -e \"process.argv=['node','astro','preview']; process.env.ASTRO_TELEMETRY_DISABLED='1'; import('./node_modules/astro/astro.js')\""
+    "dev": "node -e \"process.argv=['node','astro','dev']; process.env.ASTRO_TELEMETRY_DISABLED='1'; import('./node_modules/astro/bin/astro.mjs')\"",
+    "build": "node -e \"process.argv=['node','astro','build']; process.env.ASTRO_TELEMETRY_DISABLED='1'; import('./node_modules/astro/bin/astro.mjs')\"",
+    "preview": "node -e \"process.argv=['node','astro','preview']; process.env.ASTRO_TELEMETRY_DISABLED='1'; import('./node_modules/astro/bin/astro.mjs')\""
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.1",
+    "@astrojs/react": "^7.1.9",
     "@tailwindcss/vite": "^4.0.9",
-    "astro": "^5.4.1",
+    "astro": "^7.4.13",
     "clsx": "^2.1.1",
     "gsap": "^3.12.7",
     "lucide-react": "^0.475.0",
