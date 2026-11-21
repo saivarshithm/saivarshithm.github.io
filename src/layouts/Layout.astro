@@ -1,0 +1,71 @@
+---
+import '../styles/global.css';
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
+import { MobileDock } from '../components/MobileDock';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Saivarshith Mitukula · Digital Silicon & Power Electronics | Vibe-Coded Apps",
+  description = "Portfolio of Saivarshith Mitukula (saivarshithm) — Electrical & Electronics Engineering undergraduate at NITK Surathkal, ex-ISRO URSC research intern. Specializing in RISC-V RTL, SKY130 VLSI, Space-Grade Power Electronics, and High-Velocity Software Platforms."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth bg-[#080A0D]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Saivarshith Mitukula" />
+    <meta name="theme-color" content="#080A0D" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://saivarshithm.github.io" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://saivarshithm.github.io/saivarshith.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@Saivarshithm" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://saivarshithm.github.io/saivarshith.jpg" />
+
+    <!-- Crisp Circuit Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23080A0D'/><circle cx='50' cy='50' r='30' stroke='%2310B981' stroke-width='8' fill='none'/><circle cx='50' cy='50' r='10' fill='%2310B981'/><line x1='10' y1='50' x2='20' y2='50' stroke='%2310B981' stroke-width='8'/><line x1='80' y1='50' x2='90' y2='50' stroke='%2310B981' stroke-width='8'/></svg>" />
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-[#080A0D] text-[#F3F4F6] antialiased selection:bg-emerald-500/30 selection:text-emerald-300 min-h-[100dvh] flex flex-col">
+    <!-- Top Sticky Header -->
+    <Header client:load />
+
+    <!-- Main Content Area -->
+    <main class="flex-1 w-full relative">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer client:visible />
+
+    <!-- Mobile Thumb Dock (< 768px) -->
+    <MobileDock client:load />
+  </body>
+</html>

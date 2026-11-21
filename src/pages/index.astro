@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { HeroBench } from '../components/HeroBench';
+import { FlagshipBento } from '../components/FlagshipBento';
+import { GitHubExplorer } from '../components/GitHubExplorer';
+import { CapabilitiesMatrix } from '../components/CapabilitiesMatrix';
+import { ExperienceTimeline } from '../components/ExperienceTimeline';
+---
+
+<Layout>
+  <div class="relative w-full">
+    <!-- 01. The Bench (Hero, Profile, Real-Time Oscilloscope / PWM Synthesizer) -->
+    <HeroBench client:load />
+
+    <!-- 02. Flagship Hardware & Software (12-Col Bento Grid & Mode Switcher) -->
+    <FlagshipBento client:visible />
+
+    <!-- 03. Live GitHub Repository Engine (@saivarshithm Sync + Filters) -->
+    <GitHubExplorer client:visible />
+
+    <!-- 04. Capabilities Matrix (Silicon & Power vs Vibe Coding & Apps) -->
+    <CapabilitiesMatrix client:visible />
+
+    <!-- 05. Research & Institutional Experience Timeline (ISRO URSC, NITK) -->
+    <ExperienceTimeline client:visible />
+  </div>
+</Layout>
