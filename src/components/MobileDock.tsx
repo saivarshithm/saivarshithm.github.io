@@ -28,7 +28,7 @@ export const MobileDock: React.FC = () => {
 
   const navItems = [
     { id: 'bench', label: 'Bench', icon: Cpu, href: '#bench' },
-    { id: 'flagships', label: 'Flagships', icon: Layers, href: '#flagships' },
+    { id: 'flagships', label: 'Projects', icon: Layers, href: '#flagships' },
     { id: 'repositories', label: 'Repos', icon: Terminal, href: '#repositories' },
     { id: 'capabilities', label: 'Stack', icon: Wrench, href: '#capabilities' },
     { id: 'connect', label: 'Connect', icon: Send, href: '#connect' }
@@ -42,7 +42,7 @@ export const MobileDock: React.FC = () => {
       }}
       aria-label="Mobile Navigation Dock"
     >
-      <div className="card-glass rounded-2xl px-2 py-2 flex items-center justify-around border border-white/15 shadow-2xl backdrop-blur-xl bg-[#0C1017]/90">
+      <div className="rounded-full px-2 py-2 flex items-center justify-around border border-[#EBDFCD] shadow-[0_12px_32px_rgba(74,48,26,0.18)] backdrop-blur-xl bg-[#FBF8F2]/90">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeSection === item.id;
@@ -51,10 +51,10 @@ export const MobileDock: React.FC = () => {
             <a
               key={item.id}
               href={item.href}
-              className={`tap-target flex flex-col items-center justify-center gap-1 rounded-xl transition-all duration-150 active:scale-95 min-w-[54px] min-h-[48px] ${
+              className={`tap-target flex flex-col items-center justify-center gap-1 rounded-full transition-all duration-150 active:scale-95 min-w-[54px] min-h-[48px] ${
                 isActive
-                  ? 'text-emerald-400 bg-white/10 font-semibold'
-                  : 'text-gray-400 hover:text-white'
+                  ? 'text-white bg-[#171615] font-bold shadow-sm'
+                  : 'text-[#5C3826] hover:text-[#2E241E]'
               }`}
             >
               <Icon className="w-4 h-4" />

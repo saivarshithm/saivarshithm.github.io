@@ -5,108 +5,104 @@ import { MosfetSymbol, LogicGateSymbol } from './SchematicSymbols';
 
 export const CapabilitiesMatrix: React.FC = () => {
   return (
-    <section id="capabilities" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="capabilities" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-3">
+      <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF6F0] border border-[#EBDFCD] text-xs font-semibold tracking-widest text-[#8C5E14] uppercase mb-3">
           <Terminal className="w-3.5 h-3.5" />
-          <span>DUAL-TRACK ENGINEERING STACK</span>
+          <span>DUAL-TRACK TOOLCHAINS</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white font-display">
-          Capabilities &amp; Toolchains
+        <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#2E241E]">
+          Capabilities &amp; Stack
         </h2>
-        <p className="mt-3 text-base text-gray-400">
-          Bridging physical transistor silicon &amp; magnetic circuits with modern full-stack web platforms.
+        <p className="mt-2 text-base text-[#5C3826]">
+          Transistor silicon physics &amp; power magnetics bridged with modern high-velocity web engineering.
         </p>
       </div>
 
-      {/* Dual Columns: Track A (Silicon & Power) + Track B (Vibe Coding & Apps) */}
+      {/* Dual Stationery Sheets */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Track A: Silicon, VLSI & Power */}
-        <div className="card-glass rounded-2xl p-6 sm:p-8 border border-white/10 relative overflow-hidden group">
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600" />
-          
+        {/* Track A: Silicon & Power */}
+        <div className="paper-sheet paper-sheet-hover p-6 sm:p-8 rounded-[28px] border border-[#EBDFCD] bg-[#FBF8F2] relative">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+              <div className="p-3 rounded-2xl bg-white border border-[#EBDFCD] text-[#8C5E14] shadow-sm">
                 <Cpu className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white font-display">Silicon, VLSI &amp; Power</h3>
-                <p className="text-xs font-mono text-emerald-400">HARDWARE &amp; MAGNETICS TRACK</p>
+                <h3 className="text-xl font-bold text-[#2E241E]">Silicon, VLSI &amp; Power</h3>
+                <p className="text-xs font-mono text-[#8C5E14] font-semibold">HARDWARE &amp; MAGNETICS TRACK</p>
               </div>
             </div>
-            <MosfetSymbol size={32} color="#10B981" />
+            <MosfetSymbol size={32} color="#8C5E14" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {CAPABILITIES.siliconAndPower.map((skill, idx) => (
               <div
                 key={idx}
-                className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-emerald-500/30 transition-all"
+                className="p-3.5 rounded-2xl bg-white border border-[#EBDFCD] hover:border-[#8C5E14]/40 transition-all shadow-sm"
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-mono font-semibold text-white">
+                  <span className="text-xs font-bold text-[#2E241E]">
                     {skill.name}
                   </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#FAF6F0] text-[#8C5E14] border border-[#EBDFCD]">
                     {skill.level}
                   </span>
                 </div>
-                <p className="text-[11px] text-gray-400 leading-tight">
+                <p className="text-[11px] text-[#5C3826] leading-tight">
                   {skill.desc}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-2 text-xs font-mono text-gray-400">
-            <span className="text-emerald-400">Simulators &amp; EDA:</span>
+          <div className="mt-6 pt-4 border-t border-[#EBDFCD] flex flex-wrap gap-2 text-xs font-mono text-[#5C3826]">
+            <span className="text-[#8C5E14] font-bold">EDA &amp; Tools:</span>
             <span>Vivado · LTspice · NGSpice · GTKWave · Ansys Maxwell · MATLAB</span>
           </div>
         </div>
 
-        {/* Track B: Vibe Coding & Developer Platforms */}
-        <div className="card-glass rounded-2xl p-6 sm:p-8 border border-white/10 relative overflow-hidden group">
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 via-blue-500 to-cyan-400" />
-
+        {/* Track B: Vibe-Coding & Developer Platforms */}
+        <div className="paper-sheet paper-sheet-hover p-6 sm:p-8 rounded-[28px] border border-[#EBDFCD] bg-[#FBF8F2] relative">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400">
+              <div className="p-3 rounded-2xl bg-white border border-[#EBDFCD] text-[#0369A1] shadow-sm">
                 <Sparkles className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white font-display">Vibe Coding &amp; App Stack</h3>
-                <p className="text-xs font-mono text-sky-400">SOFTWARE &amp; AGENTIC SYSTEMS TRACK</p>
+                <h3 className="text-xl font-bold text-[#2E241E]">Vibe Coding &amp; Platforms</h3>
+                <p className="text-xs font-mono text-[#0369A1] font-semibold">SOFTWARE &amp; AGENTIC WORKFLOWS</p>
               </div>
             </div>
-            <LogicGateSymbol size={32} color="#38BDF8" />
+            <LogicGateSymbol size={32} color="#0369A1" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {CAPABILITIES.vibeCodingAndApps.map((skill, idx) => (
               <div
                 key={idx}
-                className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-sky-500/30 transition-all"
+                className="p-3.5 rounded-2xl bg-white border border-[#EBDFCD] hover:border-[#0369A1]/40 transition-all shadow-sm"
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-mono font-semibold text-white">
+                  <span className="text-xs font-bold text-[#2E241E]">
                     {skill.name}
                   </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#FAF6F0] text-[#0369A1] border border-[#EBDFCD]">
                     {skill.level}
                   </span>
                 </div>
-                <p className="text-[11px] text-gray-400 leading-tight">
+                <p className="text-[11px] text-[#5C3826] leading-tight">
                   {skill.desc}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-2 text-xs font-mono text-gray-400">
-            <span className="text-sky-400">Ecosystem:</span>
-            <span>Astro · React · TypeScript · Tailwind CSS · GSAP · Antigravity · GitHub Actions</span>
+          <div className="mt-6 pt-4 border-t border-[#EBDFCD] flex flex-wrap gap-2 text-xs font-mono text-[#5C3826]">
+            <span className="text-[#0369A1] font-bold">Stack:</span>
+            <span>Astro 5 · React 19 · TypeScript · Tailwind CSS v4 · GSAP · GitHub Pages</span>
           </div>
         </div>
       </div>
