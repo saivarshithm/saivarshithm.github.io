@@ -354,6 +354,7 @@ export const PROFILE_INFO = {
     github: 'https://github.com/saivarshithm',
     linkedin: 'https://linkedin.com/in/saivarshithmitukula',
     x: 'https://x.com/Saivarshithm',
+    instagram: 'https://instagram.com/saivarshithm',
     orcid: 'https://orcid.org/0009-0007-7773-7587',
     portfolio: 'https://saivarshithm.github.io',
     filevault: 'https://filevault.cc'

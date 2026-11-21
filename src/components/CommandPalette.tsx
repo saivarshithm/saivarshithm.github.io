@@ -13,6 +13,7 @@ import {
   Github,
   Linkedin,
   Twitter,
+  Instagram,
   BookOpen
 } from 'lucide-react';
 import { FLAGSHIP_PROJECTS, FALLBACK_REPOS, PROFILE_INFO } from '../data/projects';
@@ -77,6 +78,14 @@ export const CommandPalette: React.FC = () => {
       detail: PROFILE_INFO.links.linkedin,
       action: () => copyToClipboard(PROFILE_INFO.links.linkedin, 'LinkedIn URL'),
       icon: Linkedin
+    },
+    {
+      id: 'copy-instagram',
+      type: 'Action',
+      title: 'Copy Instagram Profile URL (@saivarshithm)',
+      detail: PROFILE_INFO.links.instagram,
+      action: () => copyToClipboard(PROFILE_INFO.links.instagram, 'Instagram URL'),
+      icon: Instagram
     },
     {
       id: 'copy-orcid',

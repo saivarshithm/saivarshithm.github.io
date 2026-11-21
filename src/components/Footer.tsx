@@ -3,6 +3,7 @@ import {
   Github, 
   Linkedin, 
   Twitter, 
+  Instagram,
   BookOpen, 
   ExternalLink, 
   Copy, 
@@ -45,6 +46,14 @@ export const Footer: React.FC = () => {
       url: PROFILE_INFO.links.x,
       icon: Twitter,
       accent: 'sky'
+    },
+    {
+      key: 'instagram',
+      label: 'Instagram',
+      handle: '@saivarshithm',
+      url: PROFILE_INFO.links.instagram,
+      icon: Instagram,
+      accent: 'pink'
     },
     {
       key: 'orcid',
